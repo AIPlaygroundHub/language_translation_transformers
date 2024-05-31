@@ -1,4 +1,4 @@
-from model import build_transformer
+from model_pytorch import build_transformer
 from dataset import BillingualDataset, casual_mask
 from config_file import get_config, get_weights_file_path
 
@@ -15,7 +15,7 @@ from tqdm import tqdm
 import os
 from pathlib import Path
 
-from datasets import load_dataset
+from datasets import load_dataset # from huggingface
 from tokenizers import Tokenizer
 from tokenizers.models import WordLevel
 from tokenizers.trainers import WordLevelTrainer
