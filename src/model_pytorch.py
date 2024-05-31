@@ -74,7 +74,7 @@ class PositionalEmbedding(nn.Module):
         self.register_buffer('pe', pe)
 
     def forward(self, x):
-        x = x + (self.pe[:, :x.shape(1), :]).requires_grad_(False) #(batch, seq_len, d_model)
+        x = x + (self.pe[:, :x.shape[1], :]).requires_grad_(False) #(batch, seq_len, d_model)
         return self.dropout(x)
 
 
@@ -150,7 +150,7 @@ class EncoderBlock(nn.Module):
 
     def forward(self, x: torch.Tensor, src_mask) -> torch.Tensor:
         x = self.residual_connection[0](x, lambda x: self.self_attention_block(x, x, x, src_mask))
-        x = self.residual_connection[1](x, lambda x: self.feed_forward_block)
+        x = self.residual_connection[1](x, self.feed_forward_block)
         return x
 
 
@@ -184,7 +184,7 @@ class Decoder(nn.Module):
     def __init__(self, layers: nn.ModuleList):
         super().__init__()
         self.layers = layers
-        self.norm = LayerNormalization
+        self.norm = LayerNormalization()
 
     def forward(self, x, encoder_output, src_mask, tgt_mask):
         for layer in self.layers:
