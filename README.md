@@ -1,6 +1,6 @@
 # Language translation using a transformer
 
-This repository contains the Pytorch code to train a transformer (encoder-decoder) model for language translation.
+This repository contains the Pytorch code to train a transformer (encoder-decoder) model for language translation. It is based on [this](https://github.com/hkproj/pytorch-transformer) repo.
 
 ## Dataset
 The task is to convert English to Italian text. We use the [Opus books](https://huggingface.co/datasets/Helsinki-NLP/opus_books) dataset.
